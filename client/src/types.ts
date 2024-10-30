@@ -1,0 +1,52 @@
+enum MusicalKey {
+    C_Major = "C Major",
+    C_Minor = "C Minor",
+    CSharp_Major = "C# Major",
+    CSharp_Minor = "C# Minor",
+    D_Major = "D Major",
+    D_Minor = "D Minor",
+    DSharp_Major = "D# Major",
+    DSharp_Minor = "D# Minor",
+    E_Major = "E Major",
+    E_Minor = "E Minor",
+    F_Major = "F Major",
+    F_Minor = "F Minor",
+    FSharp_Major = "F# Major",
+    FSharp_Minor = "F# Minor",
+    G_Major = "G Major",
+    G_Minor = "G Minor",
+    GSharp_Major = "G# Major",
+    GSharp_Minor = "G# Minor",
+    A_Major = "A Major",
+    A_Minor = "A Minor",
+    ASharp_Major = "A# Major",
+    ASharp_Minor = "A# Minor",
+    B_Major = "B Major",
+    B_Minor = "B Minor",
+}
+
+type Track = {
+    id: number,
+    trackNumber: number,
+    title: string,
+    artist: string,
+    albumId: number,
+    year: Date, //use number instead?
+    genre: string //use enum instead?
+    bpm: number
+    duration: number
+    key: MusicalKey
+}
+
+type Album = {
+    id: number,
+    title: string,
+    artist: string,
+    year: Date, //use number instead?
+    genre: string //use enum instead?
+    albumArt: URL //what is the right type for this?
+    trackCount: number,
+    acquisitionDate: Date
+}
+
+export type { MusicalKey, Track, Album }
