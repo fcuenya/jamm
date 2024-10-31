@@ -25,7 +25,7 @@ enum MusicalKey {
     B_Minor = "B Minor",
 }
 
-type Track = {
+interface Track {
     id: number,
     trackNumber: number,
     title: string,
@@ -38,15 +38,24 @@ type Track = {
     key: MusicalKey
 }
 
-type Album = {
+interface Album {
     id: number,
     title: string,
     artist: string,
     year: Date, //use number instead?
     genre: string //use enum instead?
-    albumArt: URL //what is the right type for this?
+    albumArt: string //what is the right type for this?
     trackCount: number,
     acquisitionDate: Date
 }
 
-export type { MusicalKey, Track, Album }
+interface AlbumData extends Album {
+    tracks: Track[]
+};
+
+type DataFetch<T> = {
+    isLoading: boolean,
+    data: T[]
+};
+
+export type { MusicalKey, Track, Album, AlbumData, DataFetch }

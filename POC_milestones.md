@@ -1,5 +1,5 @@
 - [x] Data mocking
-- [ ] Data fetching
+- [x] Data fetching
 - [x] TailwindCSS
 - [x] DaisyUI / other component libraries?
 
