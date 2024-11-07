@@ -6,7 +6,7 @@ const useAlbumData: () => DataFetch<AlbumData> = () => {
     const [data, setData] = useState([]);
     useEffect(() => {
         setIsLoading(true);
-        fetch("http://localhost:3000/albums?_page=1&_limit=100", { method: "GET" }).then(async (response) => {
+        fetch("http://localhost:3000/albums?_page=1&_limit=500", { method: "GET" }).then(async (response) => {
             if (response.ok) {
                 const jsonData = await response.json();
                 setData(jsonData);
