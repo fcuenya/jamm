@@ -22,7 +22,7 @@ const generateAlbum = (albumId) => ({
   artist: faker.music.artist(),
   year: faker.date.anytime(),
   genre: faker.music.genre(),
-  albumArt: faker.image.urlPicsumPhotos({ height: 128, width: 128 }),
+  albumArt: faker.image.urlPicsumPhotos({ height: 500, width: 500 }),
   trackCount: faker.number.int({ min: 5, max: 20 }),
   acquisitionDate: faker.date.anytime(),
 });
