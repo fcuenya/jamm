@@ -1,0 +1,18 @@
+{
+  "scripts": {
+    "generate-db": "node generate-db",
+    "start": "json-server --watch db.json"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^9.1.0",
+    "json-server": "^0.17.4"
+  },
+  "name": "mockserver",
+  "version": "1.0.0",
+  "description": "``` http://localhost:3000/albums?_page=1&_limit=10&_embed=tracks http://localhost:3000/tracks?_page=1&_limit=10&_expand=album ```",
+  "main": "generate-db.js",
+  "devDependencies": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

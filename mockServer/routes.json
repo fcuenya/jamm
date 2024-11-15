@@ -1,0 +1,3 @@
+{
+  "/albums/:albumId/tracks/:trackId": "/tracks/:tracksId"
+}
