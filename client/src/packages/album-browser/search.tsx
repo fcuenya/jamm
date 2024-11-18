@@ -1,21 +1,57 @@
+import { EditorView, minimalSetup } from "codemirror";
+import { autocompletion, CompletionContext } from "@codemirror/autocomplete";
+import { useState, useRef, useEffect } from "react";
+
+const completions = [
+  { label: "artist:", type: "field" },
+  { label: "title:", type: "field" },
+  { label: "album:", type: "field" },
+  { label: "genre:", type: "field" },
+  { label: "AND", type: "operator" },
+  { label: "OR", type: "operator" },
+  { label: ">", type: "operator" },
+  { label: "<", type: "operator" },
+  { label: "=", type: "operator" },
+];
+
+function myCompletions(context: CompletionContext) {
+  let word = context.matchBefore(/\w*/);
+  if (!word) return null;
+  return {
+    from: word.from,
+    options: completions,
+  };
+}
+
 const Search = () => {
-  return (
-    <label className="input input-bordered flex items-center gap-2">
-      <input type="text" className="grow" placeholder="Search" />
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 16 16"
-        fill="currentColor"
-        className="h-4 w-4 opacity-70"
-      >
-        <path
-          fillRule="evenodd"
-          d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
-          clipRule="evenodd"
-        />
-      </svg>
-    </label>
-  );
+  const editor = useRef<HTMLDivElement>(null);
+  const [view, setView] = useState<EditorView>();
+
+  useEffect(() => {
+    if (!editor.current) return;
+
+    const view = new EditorView({
+      doc: "",
+      extensions: [
+        minimalSetup,
+        autocompletion({
+          override: [myCompletions],
+        }),
+        EditorView.theme({
+          "&": { height: "40px" },
+          ".cm-scroller": { overflow: "hidden" },
+          ".cm-content": { padding: "8px" },
+        }),
+      ],
+      parent: editor.current,
+    });
+
+    setView(view);
+
+    return () => view.destroy();
+  }, []);
+
+  return <div ref={editor} className="search-editor" />;
 };
 
 export default Search;

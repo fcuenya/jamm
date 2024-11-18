@@ -25,7 +25,14 @@ interface AlbumItemProps {
 const AlbumItem = ({ albumArt, title, artist }: AlbumItemProps) => (
   <div className="w-48 hover:brightness-50 cursor-pointer">
     <figure>
-      <img src={albumArt} alt="Album Art" className="rounded" />
+      <img
+        src={albumArt}
+        alt="Album Art"
+        className="rounded"
+        onError={(e) => {
+          e.currentTarget.src = "/images/missing_artwork.jpg";
+        }}
+      />
     </figure>
     <div>
       <h3 className="text-sm font-bold line-clamp-2">{title}</h3>
